@@ -1,3 +1,25 @@
-<h1>{{besked}}</h1>
+<h1>{{header}}</h1>
 
-<div>{{response}}</div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Active</th>
+                <th>Delete</th>
+            </tr>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in projects">
+            <td>{{project.id}}</td>
+            <td>{{project.name}}</td>
+            <td>{{project.description}}</td>
+            <td>{{project.isActive == true ? 'yes' : 'no'}}</td>
+            <td><button class="btn-danger" ng-click="deleteProject(project.id)">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

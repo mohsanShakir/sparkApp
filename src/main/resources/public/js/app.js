@@ -1,6 +1,7 @@
-angular.module("sparkapp", ['sparkappControllers','ngRoute'])
+angular.module("sparkapp", ['sparkappControllers', 'ngRoute','ngResource'])
 
-    .config(function($routeProvider, $locationProvider) {
+    .config(['$routeProvider','$locationProvider',
+        function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/home', {
                 templateUrl: 'js/views/home.html',
@@ -17,5 +18,6 @@ angular.module("sparkapp", ['sparkappControllers','ngRoute'])
 
         // configure html5 to get links working on jsfiddle
         $locationProvider.html5Mode(true);
-    });
+
+    }]);
 

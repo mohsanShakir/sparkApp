@@ -9,7 +9,8 @@ repositories {
 }
 
 dependencies {
-    compile 'com.sparkjava:spark-core:1.1.1'
-    compile 'org.codehaus.groovy:groovy-all:2.2.0'
+    compile 'com.sparkjava:spark-core:2.0.0'
+    compile 'org.codehaus.groovy:groovy-all:2.3.0'
+    compile 'com.google.code.gson:gson:2.2.4'
 }
 

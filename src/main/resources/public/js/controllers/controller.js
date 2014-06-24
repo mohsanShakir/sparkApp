@@ -3,23 +3,30 @@
 var sparkappControllers = angular.module('sparkappControllers', []);
 
 sparkappControllers.controller('homeController', ['$scope',
-    function($scope) {
-        $scope.besked = "HOME";
+    function ($scope) {
+        $scope.header = "Home";
     }]);
 
-sparkappControllers.controller('projectController', ['$scope','$http',
-    function($scope,$http) {
 
-        $scope.besked = "PROJECT";
-        $http({method: 'GET', url: '/hello'}).
-            success(function(data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.response = data;
-            }).
-            error(function(data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+sparkappControllers.controller('projectController', ['$scope', '$resource',
+    function ($scope, $resource) {
+
+        $scope.header = "Projects";
+
+        var Projects = $resource('/projects/:projectId', {projectId:'@id'});
+
+        Projects.query()
+            .$promise.then(function (projects) {
+                $scope.projects = projects;
             });
 
+        $scope.deleteProject = function(id) {
+           Projects.delete({projectId:id})
+               .$promise.then(function (projects) {
+               $scope.projects = projects;
+           });
+
+        };
+
     }]);
+
